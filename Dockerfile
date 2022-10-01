@@ -1,4 +1,4 @@
-FROM debian
+FROM alpine
 
 RUN mkdir /app
 
@@ -6,12 +6,12 @@ WORKDIR /app
 
 COPY . /app
 
-RUN apt update && apt install gcc make -y && \
+RUN apk add --no-cache build-base make && \
     cd vlmcsd && \
     make && \
     mv bin/vlmcsd /usr/local/bin && \
     mv bin/vlmcs /usr/local/bin && \
-    apt autoremove gcc make -y && apt purge gcc make -y && apt clean && \
+    apk del build-base make && \
     rm -rf /tmp/* && \
     rm -rf /app/*
 
