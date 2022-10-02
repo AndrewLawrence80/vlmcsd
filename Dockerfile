@@ -7,7 +7,6 @@ WORKDIR /app
 COPY . /app
 
 RUN apk add --no-cache build-base make && \
-    cd vlmcsd && \
     make && \
     mv bin/vlmcsd /usr/local/bin && \
     mv bin/vlmcs /usr/local/bin && \
